@@ -1,6 +1,7 @@
-import 'package:dubai_recruitment/Managers/LayoutManager.dart';
-import 'package:dubai_recruitment/Views/Shared/AppBar.dart';
-import 'package:dubai_recruitment/Views/Shared/searchField.dart';
+import 'package:recruitment/Managers/LayoutManager.dart';
+import 'package:recruitment/Views/Shared/AppBar.dart';
+import 'package:recruitment/Views/Shared/jobCard.dart';
+import 'package:recruitment/Views/Shared/searchField.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatefulWidget {
@@ -21,7 +22,11 @@ class _HomeViewState extends State<HomeView> {
         padding: EdgeInsets.symmetric(
             horizontal: layoutManager.mainHorizontalPadding(), vertical: 30),
         child: ListView(
-          children: [SearchInput()],
+          children: [
+            const SearchInput(),
+            JobCard(),
+            JobCard(),
+          ],
         ),
       ),
     );

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dubai_recruitment/Helper/Constants.dart';
+import 'package:recruitment/Helper/Constants.dart';
 
 class AuthTextField extends StatelessWidget {
   final String labelText;

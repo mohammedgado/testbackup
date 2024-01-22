@@ -1,6 +1,6 @@
-import 'package:dubai_recruitment/Helper/Constants.dart';
-import 'package:dubai_recruitment/views/home.dart';
-import 'package:dubai_recruitment/views/login.dart';
+import 'package:recruitment/Helper/Constants.dart';
+import 'package:recruitment/views/home.dart';
+import 'package:recruitment/views/login.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

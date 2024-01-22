@@ -1,7 +1,7 @@
-import 'package:dubai_recruitment/Helper/Authentication.dart';
+import 'package:recruitment/Helper/Authentication.dart';
 import 'package:flutter/material.dart';
 // import 'package:app_tracking_transparency/app_tracking_transparency.dart';
-import 'package:dubai_recruitment/Helper/Constants.dart';
+import 'package:recruitment/Helper/Constants.dart';
 import 'package:provider/provider.dart';
 
 class SplashView extends StatefulWidget {

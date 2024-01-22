@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:dubai_recruitment/Helper/Constants.dart';
+import 'package:recruitment/Helper/Constants.dart';
 
 class PhoneTextField extends StatefulWidget {
   final String countryCode;

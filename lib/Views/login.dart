@@ -1,16 +1,18 @@
-import 'package:dubai_recruitment/Extensions/extensions.dart';
-import 'package:dubai_recruitment/Helper/responsive.dart';
-import 'package:dubai_recruitment/Managers/LayoutManager.dart';
-import 'package:dubai_recruitment/Views/Shared/AppBar.dart';
-import 'package:dubai_recruitment/Views/Shared/CustomLoadingButton.dart';
-import 'package:dubai_recruitment/Views/Shared/authTextField.dart';
-import 'package:dubai_recruitment/Views/Shared/passTextField.dart';
-import 'package:dubai_recruitment/Views/home.dart';
-import 'package:dubai_recruitment/views/signup.dart';
-import 'package:dubai_recruitment/Helper/Constants.dart';
+import 'package:recruitment/Extensions/extensions.dart';
+import 'package:recruitment/Managers/GSignIn.dart';
+import 'package:recruitment/Managers/LayoutManager.dart';
+import 'package:recruitment/Views/Shared/AppBar.dart';
+import 'package:recruitment/Views/Shared/CustomLoadingButton.dart';
+import 'package:recruitment/Views/Shared/authTextField.dart';
+import 'package:recruitment/Views/Shared/passTextField.dart';
+import 'package:recruitment/Views/home.dart';
+import 'package:recruitment/views/signup.dart';
+import 'package:recruitment/Helper/Constants.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:signin_with_linkedin/signin_with_linkedin.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -59,7 +61,11 @@ class _LoginViewState extends State<LoginView> {
     final layoutManager = LayoutManager(context);
     return Scaffold(
         appBar: BaseAppBar(
-            appBar: AppBar(), widgetContext: context, showBackButton: false),
+          appBar: AppBar(),
+          widgetContext: context,
+          showBackButton: false,
+          hideElevation: true,
+        ),
         resizeToAvoidBottomInset: false,
         body: SingleChildScrollView(
           child: Padding(
@@ -173,31 +179,64 @@ class _LoginViewState extends State<LoginView> {
                       ),
                       child: Image.asset('images/x.png'),
                     ),
-                    Container(
-                      width: 105,
-                      height: 56,
-                      decoration: ShapeDecoration(
-                        color: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          side: const BorderSide(
-                              width: 1, color: Color(0xFFE8ECF4)),
-                          borderRadius: BorderRadius.circular(8),
+                    InkWell(
+                      onTap: () async {
+                        GoogleSignInAccount account =
+                            await GSignIn().handleSignIn();
+                        print(account);
+                        context.okAlert(
+                            title: 'Google Sign in',
+                            message:
+                                'Username: ${account.displayName}\nEmail: ${account.email}');
+                      },
+                      child: Container(
+                        width: 105,
+                        height: 56,
+                        decoration: ShapeDecoration(
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            side: const BorderSide(
+                                width: 1, color: Color(0xFFE8ECF4)),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
                         ),
+                        child: Image.asset('images/google.png'),
                       ),
-                      child: Image.asset('images/google.png'),
                     ),
-                    Container(
-                      width: 105,
-                      height: 56,
-                      decoration: ShapeDecoration(
-                        color: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          side: const BorderSide(
-                              width: 1, color: Color(0xFFE8ECF4)),
-                          borderRadius: BorderRadius.circular(8),
+                    InkWell(
+                      onTap: () {
+                        SignInWithLinkedIn.signIn(
+                          context,
+                          config: LinkedInConfig(
+                            clientId: '77gr0t07knekax',
+                            clientSecret: 'Zq4w34kDY462nFFk',
+                            redirectUrl: 'https://dubairecruitment.net/',
+                            scope: ['openid', 'profile', 'email'],
+                          ),
+                          onGetAuthToken: (data) {
+                            print('Auth token data: ${data.toJson()}');
+                          },
+                          onGetUserProfile: (token, user) {
+                            print('LinkedIn User: ${user.toJson()}');
+                          },
+                          onSignInError: (error) {
+                            print('Error on sign in: $error');
+                          },
+                        );
+                      },
+                      child: Container(
+                        width: 105,
+                        height: 56,
+                        decoration: ShapeDecoration(
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            side: const BorderSide(
+                                width: 1, color: Color(0xFFE8ECF4)),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
                         ),
+                        child: Image.asset('images/linkedin.png'),
                       ),
-                      child: Image.asset('images/linkedin.png'),
                     )
                   ],
                 ),
@@ -217,13 +256,15 @@ class _LoginViewState extends State<LoginView> {
                       onPressed: () {
                         context.navigateTo(const SignupView());
                       },
-                      child: const Text('Register Now',
-                          // AppLocalizations.of(context)!.createNewAccount,
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.normal,
-                            color: appDesign.colorPrimary,
-                          )),
+                      child: const Text(
+                        'Register Now',
+                        // AppLocalizations.of(context)!.createNewAccount,
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.normal,
+                          color: appDesign.colorPrimary,
+                        ),
+                      ),
                     )
                   ],
                 ),

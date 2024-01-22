@@ -1,14 +1,14 @@
-import 'package:dubai_recruitment/Extensions/extensions.dart';
-import 'package:dubai_recruitment/Helper/Validator.dart';
-import 'package:dubai_recruitment/Helper/responsive.dart';
-import 'package:dubai_recruitment/Managers/LayoutManager.dart';
-import 'package:dubai_recruitment/Views/Shared/CustomLoadingButton.dart';
-import 'package:dubai_recruitment/Views/Shared/authTextField.dart';
-import 'package:dubai_recruitment/Views/Shared/passTextField.dart';
-import 'package:dubai_recruitment/Views/Shared/phoneTextField.dart';
+import 'package:recruitment/Extensions/extensions.dart';
+import 'package:recruitment/Helper/Validator.dart';
+import 'package:recruitment/Helper/responsive.dart';
+import 'package:recruitment/Managers/LayoutManager.dart';
+import 'package:recruitment/Views/Shared/CustomLoadingButton.dart';
+import 'package:recruitment/Views/Shared/authTextField.dart';
+import 'package:recruitment/Views/Shared/passTextField.dart';
+import 'package:recruitment/Views/Shared/phoneTextField.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:dubai_recruitment/Helper/Constants.dart';
+import 'package:recruitment/Helper/Constants.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 class SignupView extends StatefulWidget {

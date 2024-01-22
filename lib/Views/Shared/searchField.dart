@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:recruitment/Extensions/extensions.dart';
+import 'package:recruitment/Views/searchResult.dart';
 
 class SearchInput extends StatefulWidget {
   const SearchInput(
@@ -42,10 +44,12 @@ class _SearchInputState extends State<SearchInput> {
           controller: searchController,
           // style: TextStyle(fontSize: 14),
           textInputAction: TextInputAction.search,
-          onSubmitted: (search) {},
+          onSubmitted: (search) {
+            context.navigateTo(const SearchResultView());
+          },
           decoration: InputDecoration(
             hintText: 'Looking for a job ?',
-            hintStyle: TextStyle(
+            hintStyle: const TextStyle(
               color: Color(0xFF9CA3AF),
               fontSize: 14,
               fontFamily: 'Inter',

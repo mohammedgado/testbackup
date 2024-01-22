@@ -1,4 +1,4 @@
-import 'package:dubai_recruitment/Extensions/extensions.dart';
+import 'package:recruitment/Extensions/extensions.dart';
 import 'package:flutter/material.dart';
 
 class LayoutManager {

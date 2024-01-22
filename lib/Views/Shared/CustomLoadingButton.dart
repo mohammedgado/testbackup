@@ -1,6 +1,6 @@
-import 'package:dubai_recruitment/Helper/Constants.dart';
-import 'package:dubai_recruitment/Extensions/extensions.dart';
-import 'package:dubai_recruitment/Managers/LayoutManager.dart';
+import 'package:recruitment/Helper/Constants.dart';
+import 'package:recruitment/Extensions/extensions.dart';
+import 'package:recruitment/Managers/LayoutManager.dart';
 import 'package:flutter/material.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 

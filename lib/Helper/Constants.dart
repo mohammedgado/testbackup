@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:dubai_recruitment/Models/User.dart';
+import 'package:recruitment/Models/User.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -17,7 +17,7 @@ class appDesign {
   static const colorPrimary = Color(0xFF386FA4);
   static const colorPrimaryDark = Color(0xff030F2E);
   static const colorPrimaryLight = Color(0xff04BFDB);
-  static const colorAccent = Color(0xff04BFDB);
+  static const colorAccent = Color(0xFF5AA5D8);
   static const colorAccentDarker = Color(0xFF088395);
   static const colorUnhighlighted = Color(0xff818796);
   static const backGround = Color(0xffffffff);
