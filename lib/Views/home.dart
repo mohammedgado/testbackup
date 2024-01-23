@@ -20,10 +20,14 @@ class _HomeViewState extends State<HomeView> {
           appBar: AppBar(), widgetContext: context, showBackButton: false),
       body: Padding(
         padding: EdgeInsets.symmetric(
-            horizontal: layoutManager.mainHorizontalPadding(), vertical: 30),
+            horizontal: layoutManager.mainHorizontalPadding(), vertical: 16),
         child: ListView(
-          children: [
-            const SearchInput(),
+          children: const [
+            SearchInput(),
+            SizedBox(height: 8),
+            SearchInput(
+              isLocation: true,
+            ),
             JobCard(),
             JobCard(),
           ],

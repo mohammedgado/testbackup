@@ -9,23 +9,25 @@ class CustomLoadingButton extends StatelessWidget {
   final Color? color;
   final String text;
   final VoidCallback onPressed;
+  final bool removePadding;
 
   CustomLoadingButton({
     required this.controller,
     this.color,
     required this.text,
     required this.onPressed,
+    this.removePadding = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:
-          const EdgeInsetsDirectional.symmetric(horizontal: 8, vertical: 25),
+      padding: EdgeInsetsDirectional.symmetric(
+          horizontal: removePadding ? 0 : 8, vertical: 25),
       child: RoundedLoadingButton(
         width: LayoutManager(context)
             .valuesHandler(context.screenWidth, context.screenWidth, 430, 430),
-        height: 48,
+        height: 46,
         controller: controller,
         color: color ?? appDesign.colorPrimary,
         successIcon: Icons.cloud,
@@ -34,7 +36,11 @@ class CustomLoadingButton extends StatelessWidget {
         child: Text(
           text,
           style: TextStyle(
-              fontWeight: FontWeight.w600, fontSize: 20, color: Colors.white),
+            color: Colors.white,
+            fontSize: 16,
+            fontFamily: 'Inter',
+            fontWeight: FontWeight.w500,
+          ),
         ),
         onPressed: onPressed,
       ),

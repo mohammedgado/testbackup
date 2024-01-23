@@ -102,7 +102,7 @@ class _SplashViewState extends State<SplashView> {
               child: Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 30, vertical: 50),
-                child: Image.asset("images/logo.png"),
+                child: Image.asset("images/logoblue.png"),
               ),
             ));
   }

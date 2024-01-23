@@ -72,72 +72,67 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
             width: 104, height: 25, child: Image.asset("images/logo.png")),
       ),
       actions: [
-        Padding(
-          padding: const EdgeInsets.all(2),
-          child: Container(
-            height: 50,
-            width: 50,
-            decoration: BoxDecoration(
+        Container(
+          height: 45,
+          width: 45,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(50),
+            // color: Colors.white,
+            // boxShadow: [
+            //   BoxShadow(
+            //     blurRadius: 4,
+            //     spreadRadius: 0,
+            //     color: Colors.black.withAlpha(38),
+            //     offset: const Offset(0, 1),
+            //   ),
+            // ],
+          ),
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
               borderRadius: BorderRadius.circular(50),
-              // color: Colors.white,
-              // boxShadow: [
-              //   BoxShadow(
-              //     blurRadius: 4,
-              //     spreadRadius: 0,
-              //     color: Colors.black.withAlpha(38),
-              //     offset: const Offset(0, 1),
-              //   ),
-              // ],
-            ),
-            child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-                borderRadius: BorderRadius.circular(50),
-                splashColor: Colors.grey[500],
-                onTap: () {
-                  // context.navigateTo(const NotificationsView());
-                },
-                child: const Icon(
-                  Icons.email_outlined,
-                  color: appDesign.colorPrimary,
-                ),
+              splashColor: Colors.grey[500],
+              onTap: () {
+                // context.navigateTo(const NotificationsView());
+              },
+              child: const Icon(
+                Icons.email_outlined,
+                color: appDesign.colorPrimary,
               ),
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(2),
-          child: Container(
-            height: 50,
-            width: 50,
-            decoration: BoxDecoration(
+        Container(
+          height: 45,
+          width: 45,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(50),
+            // color: Colors.white,
+            // boxShadow: [
+            //   BoxShadow(
+            //     blurRadius: 4,
+            //     spreadRadius: 0,
+            //     color: Colors.black.withAlpha(38),
+            //     offset: const Offset(0, 1),
+            //   ),
+            // ],
+          ),
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
               borderRadius: BorderRadius.circular(50),
-              // color: Colors.white,
-              // boxShadow: [
-              //   BoxShadow(
-              //     blurRadius: 4,
-              //     spreadRadius: 0,
-              //     color: Colors.black.withAlpha(38),
-              //     offset: const Offset(0, 1),
-              //   ),
-              // ],
-            ),
-            child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-                borderRadius: BorderRadius.circular(50),
-                splashColor: Colors.grey[500],
-                onTap: () {
-                  // context.navigateTo(const NotificationsView());
-                },
-                child: const Icon(
-                  Icons.person_outline,
-                  color: appDesign.colorPrimary,
-                ),
+              splashColor: Colors.grey[500],
+              onTap: () {
+                // context.navigateTo(const NotificationsView());
+              },
+              child: const Icon(
+                Icons.person_outline,
+                color: appDesign.colorPrimary,
               ),
             ),
           ),
         ),
+        SizedBox(width: 10),
       ],
     );
   }
