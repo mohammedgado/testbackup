@@ -1,3 +1,4 @@
+import 'package:easy_linkedin_login/easy_linkedin_login.dart';
 import 'package:recruitment/Extensions/extensions.dart';
 import 'package:recruitment/Managers/GSignIn.dart';
 import 'package:recruitment/Managers/LayoutManager.dart';
@@ -12,7 +13,12 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:signin_with_linkedin/signin_with_linkedin.dart';
+
+final config = LinkedInConfig(
+  clientId: '77gr0t07knekax',
+  clientSecret: 'Zq4w34kDY462nFFk',
+  redirectUrl: 'https://dubairecruitment.net/',
+);
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -36,7 +42,7 @@ class _LoginViewState extends State<LoginView> {
       );
       btnController.reset();
     } else {
-      context.navigateTo(HomeView());
+      context.navigateTo(const HomeView());
 
       btnController.reset();
       // btnController.success();
@@ -203,27 +209,16 @@ class _LoginViewState extends State<LoginView> {
                         child: Image.asset('images/google.png'),
                       ),
                     ),
-                    InkWell(
-                      onTap: () {
-                        SignInWithLinkedIn.signIn(
-                          context,
-                          config: LinkedInConfig(
-                            clientId: '77gr0t07knekax',
-                            clientSecret: 'Zq4w34kDY462nFFk',
-                            redirectUrl: 'https://dubairecruitment.net/',
-                            scope: ['openid', 'profile', 'email'],
-                          ),
-                          onGetAuthToken: (data) {
-                            print('Auth token data: ${data.toJson()}');
-                          },
-                          onGetUserProfile: (token, user) {
-                            print('LinkedIn User: ${user.toJson()}');
-                          },
-                          onSignInError: (error) {
-                            print('Error on sign in: $error');
-                          },
-                        );
-                      },
+                    LinkedInCustomButton(
+                      config: config,
+                      destroySession: true,
+                      onError: (error) => print('Error: ${error.message}'),
+                      onGetAuthToken: (data) =>
+                          print('Access token ${data.accessToken!}'),
+                      onGetUserProfile: (user) => context.okAlert(
+                          title: 'LinkedIn Sign in',
+                          message:
+                              'Username: ${user.name}\nEmail: ${user.email}'),
                       child: Container(
                         width: 105,
                         height: 56,
