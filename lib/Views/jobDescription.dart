@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:recruitment/Extensions/extensions.dart';
 import 'package:recruitment/Helper/responsive.dart';
 import 'package:recruitment/Views/Shared/CustomLoadingButton.dart';
+import 'package:recruitment/Views/apply.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:recruitment/Helper/Constants.dart';
 
@@ -240,7 +242,10 @@ Future<void> jobDescriptionModal(BuildContext context) {
                             controller: applyBtnController,
                             // text: AppLocalizations.of(context)!.logIn,
                             text: 'Apply',
-                            onPressed: () {},
+                            onPressed: () {
+                              context.navigateTo(ApplyView());
+                              applyBtnController.reset();
+                            },
                           ),
                         ],
                       ),

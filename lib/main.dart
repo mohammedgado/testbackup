@@ -42,7 +42,7 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         navigatorKey: Constant.navigatorKey,
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          colorScheme: ColorScheme.fromSeed(seedColor: appDesign.colorPrimary),
           useMaterial3: true,
         ),
         home: const SplashView(),

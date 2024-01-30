@@ -14,6 +14,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool? showNotification;
   final bool? showLogo;
   final bool? hideElevation;
+  final bool? hideActions;
 
   BaseAppBar(
       {required this.appBar,
@@ -22,7 +23,8 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
       this.hideElevation,
       this.showLogo,
       this.showSearch,
-      this.showNotification});
+      this.showNotification,
+      this.hideActions});
 
   @override
   Widget build(BuildContext context) {
@@ -73,69 +75,71 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: SizedBox(
             width: 104, height: 25, child: Image.asset("images/logo.png")),
       ),
-      actions: [
-        Container(
-          height: 45,
-          width: 45,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50),
-          ),
-          child: Material(
-            color: Colors.transparent,
-            child: InkWell(
-              borderRadius: BorderRadius.circular(50),
-              splashColor: Colors.grey[500],
-              onTap: () {
-                context.navigateTo(const MessagesView());
-              },
-              child: Stack(
-                children: [
-                  const Center(
-                    child: Icon(
-                      Icons.email_outlined,
+      actions: hideActions != null && hideActions == true
+          ? null
+          : [
+              Container(
+                height: 45,
+                width: 45,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                ),
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(50),
+                    splashColor: Colors.grey[500],
+                    onTap: () {
+                      context.navigateTo(const MessagesView());
+                    },
+                    child: Stack(
+                      children: [
+                        const Center(
+                          child: Icon(
+                            Icons.email_outlined,
+                            color: appDesign.colorPrimary,
+                          ),
+                        ),
+                        Positioned(
+                          top: 12,
+                          left: 10,
+                          child: Container(
+                            width: 7,
+                            height: 7,
+                            decoration: const ShapeDecoration(
+                              color: Color(0xFFF14336),
+                              shape: OvalBorder(),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                height: 45,
+                width: 45,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                ),
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(50),
+                    splashColor: Colors.grey[500],
+                    onTap: () {
+                      context.navigateTo(const ProfileView());
+                    },
+                    child: const Icon(
+                      Icons.person_outline,
                       color: appDesign.colorPrimary,
                     ),
                   ),
-                  Positioned(
-                    top: 12,
-                    left: 10,
-                    child: Container(
-                      width: 7,
-                      height: 7,
-                      decoration: const ShapeDecoration(
-                        color: Color(0xFFF14336),
-                        shape: OvalBorder(),
-                      ),
-                    ),
-                  )
-                ],
+                ),
               ),
-            ),
-          ),
-        ),
-        Container(
-          height: 45,
-          width: 45,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50),
-          ),
-          child: Material(
-            color: Colors.transparent,
-            child: InkWell(
-              borderRadius: BorderRadius.circular(50),
-              splashColor: Colors.grey[500],
-              onTap: () {
-                context.navigateTo(const ProfileView());
-              },
-              child: const Icon(
-                Icons.person_outline,
-                color: appDesign.colorPrimary,
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(width: 10),
-      ],
+              const SizedBox(width: 10),
+            ],
     );
   }
 

@@ -71,6 +71,7 @@ class _LoginViewState extends State<LoginView> {
           widgetContext: context,
           showBackButton: false,
           hideElevation: true,
+          hideActions: true,
         ),
         resizeToAvoidBottomInset: false,
         body: SingleChildScrollView(
