@@ -33,16 +33,16 @@ class CustomLoadingButton extends StatelessWidget {
         successIcon: Icons.cloud,
         failedIcon: Icons.error,
         borderRadius: 10.0,
+        onPressed: onPressed,
         child: Text(
           text,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontSize: 16,
             fontFamily: 'Inter',
             fontWeight: FontWeight.w500,
           ),
         ),
-        onPressed: onPressed,
       ),
     );
   }

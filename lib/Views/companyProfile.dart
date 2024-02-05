@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:recruitment/Extensions/extensions.dart';
 import 'package:recruitment/Helper/Constants.dart';
 import 'package:recruitment/Managers/LayoutManager.dart';
 import 'package:recruitment/Views/Shared/AppBar.dart';
-import 'package:recruitment/Views/companyProfile.dart';
 
-class ProfileView extends StatelessWidget {
-  const ProfileView({super.key});
+class CompanyProfileView extends StatelessWidget {
+  const CompanyProfileView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +58,7 @@ class ProfileView extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           const Text(
-            'LinkYou User',
+            'LinkYou Company',
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontWeight: FontWeight.w500,
@@ -71,7 +69,7 @@ class ProfileView extends StatelessWidget {
           const SizedBox(height: 24),
           const ListTile(
             title: Text(
-              'Username',
+              'Company Name',
               style: TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 22,
@@ -113,35 +111,21 @@ class ProfileView extends StatelessWidget {
           ),
           const ListTile(
             title: Text(
+              'Website',
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 22,
+                fontFamily: 'Inter',
+              ),
+            ),
+            trailing: Icon(Icons.arrow_forward_ios),
+            shape: Border(
+              bottom: BorderSide(width: 1),
+            ),
+          ),
+          const ListTile(
+            title: Text(
               'About',
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 22,
-                fontFamily: 'Inter',
-              ),
-            ),
-            trailing: Icon(Icons.arrow_forward_ios),
-            shape: Border(
-              bottom: BorderSide(width: 1),
-            ),
-          ),
-          const ListTile(
-            title: Text(
-              'Education',
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 22,
-                fontFamily: 'Inter',
-              ),
-            ),
-            trailing: Icon(Icons.arrow_forward_ios),
-            shape: Border(
-              bottom: BorderSide(width: 1),
-            ),
-          ),
-          const ListTile(
-            title: Text(
-              'Work Experience',
               style: TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 22,
@@ -184,12 +168,6 @@ class ProfileView extends StatelessWidget {
               bottom: BorderSide(width: 1),
             ),
           ),
-          MaterialButton(
-            child: Text('Company Profile'),
-            onPressed: () {
-              context.navigateTo(CompanyProfileView());
-            },
-          )
         ],
       ),
     );

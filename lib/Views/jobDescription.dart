@@ -54,7 +54,7 @@ Future<void> jobDescriptionModal(BuildContext context) {
                   children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 16),
+                          horizontal: 20, vertical: 16),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

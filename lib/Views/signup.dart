@@ -123,7 +123,6 @@ class _SignupViewState extends State<SignupView> {
                   fontSize: 18,
                   fontFamily: 'Inter',
                   fontWeight: FontWeight.w400,
-                  height: 0.07,
                 ),
               ),
               const SizedBox(height: 35),
@@ -284,7 +283,7 @@ class _SignupViewState extends State<SignupView> {
                   ),
                   TextButton(
                     onPressed: () {
-                      context.navigateTo(const SignupView());
+                      Navigator.of(context).popUntil((route) => route.isFirst);
                     },
                     child: const Text('Login Now',
                         // AppLocalizations.of(context)!.createNewAccount,

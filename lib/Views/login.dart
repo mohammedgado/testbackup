@@ -7,6 +7,7 @@ import 'package:recruitment/Views/Shared/CustomLoadingButton.dart';
 import 'package:recruitment/Views/Shared/authTextField.dart';
 import 'package:recruitment/Views/Shared/passTextField.dart';
 import 'package:recruitment/Views/home.dart';
+import 'package:recruitment/Views/userTypeSelect.dart';
 import 'package:recruitment/views/signup.dart';
 import 'package:recruitment/Helper/Constants.dart';
 import 'package:flutter/material.dart';
@@ -101,7 +102,6 @@ class _LoginViewState extends State<LoginView> {
                     fontSize: 18,
                     fontFamily: 'Inter',
                     fontWeight: FontWeight.w400,
-                    height: 0.07,
                   ),
                 ),
                 const SizedBox(height: 35),
@@ -250,7 +250,8 @@ class _LoginViewState extends State<LoginView> {
                     ),
                     TextButton(
                       onPressed: () {
-                        context.navigateTo(const SignupView());
+                        // context.navigateTo(const SignupView());
+                        context.navigateTo(const UserTypeSelectView());
                       },
                       child: const Text(
                         'Register Now',
