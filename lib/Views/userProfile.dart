@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:recruitment/Extensions/extensions.dart';
 import 'package:recruitment/Helper/Constants.dart';
+import 'package:recruitment/Managers/LayoutManager.dart';
 import 'package:recruitment/Views/Shared/AppBar.dart';
+import 'package:recruitment/Views/Shared/appListTile.dart';
 
-class CompanyProfileView extends StatelessWidget {
-  const CompanyProfileView({super.key});
+class UserProfileView extends StatelessWidget {
+  const UserProfileView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +60,7 @@ class CompanyProfileView extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           const Text(
-            'LinkYou Company',
+            'LinkYou User',
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontWeight: FontWeight.w500,
@@ -66,90 +69,14 @@ class CompanyProfileView extends StatelessWidget {
                 color: appDesign.colorPrimary),
           ),
           const SizedBox(height: 24),
-          const ListTile(
-            title: Text(
-              'Company Name',
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 22,
-                fontFamily: 'Inter',
-              ),
-            ),
-            trailing: Icon(Icons.arrow_forward_ios),
-            shape: Border(
-              bottom: BorderSide(width: 1),
-            ),
-          ),
-          const ListTile(
-            title: Text(
-              'Email',
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 22,
-                fontFamily: 'Inter',
-              ),
-            ),
-            trailing: Icon(Icons.arrow_forward_ios),
-            shape: Border(
-              bottom: BorderSide(width: 1),
-            ),
-          ),
-          const ListTile(
-            title: Text(
-              'Phone number',
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 22,
-                fontFamily: 'Inter',
-              ),
-            ),
-            trailing: Icon(Icons.arrow_forward_ios),
-            shape: Border(
-              bottom: BorderSide(width: 1),
-            ),
-          ),
-          const ListTile(
-            title: Text(
-              'Website',
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 22,
-                fontFamily: 'Inter',
-              ),
-            ),
-            trailing: Icon(Icons.arrow_forward_ios),
-            shape: Border(
-              bottom: BorderSide(width: 1),
-            ),
-          ),
-          const ListTile(
-            title: Text(
-              'About',
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 22,
-                fontFamily: 'Inter',
-              ),
-            ),
-            trailing: Icon(Icons.arrow_forward_ios),
-            shape: Border(
-              bottom: BorderSide(width: 1),
-            ),
-          ),
-          const ListTile(
-            title: Text(
-              'Password',
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 22,
-                fontFamily: 'Inter',
-              ),
-            ),
-            trailing: Icon(Icons.arrow_forward_ios),
-            shape: Border(
-              bottom: BorderSide(width: 1),
-            ),
-          ),
+          appListTile('Username', () {}),
+          appListTile('Email', () {}),
+          appListTile('Phone number', () {}),
+          appListTile('Job Title', () {}),
+          appListTile('About', () {}),
+          appListTile('Education', () {}),
+          appListTile('Work experience', () {}),
+          appListTile('Password', () {}),
           const ListTile(
             title: Text(
               'Delete account',
@@ -167,6 +94,25 @@ class CompanyProfileView extends StatelessWidget {
               bottom: BorderSide(width: 1),
             ),
           ),
+          ListTile(
+            onTap: () {},
+            title: const Text(
+              'Sign out',
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 22,
+                fontFamily: 'Inter',
+              ),
+            ),
+            trailing: const Icon(
+              Icons.logout,
+              color: appDesign.colorPrimary,
+            ),
+            shape: const Border(
+              bottom: BorderSide(width: 1),
+            ),
+          ),
+          const SizedBox(height: 24),
         ],
       ),
     );

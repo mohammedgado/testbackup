@@ -1,15 +1,16 @@
 import 'package:recruitment/Managers/LayoutManager.dart';
 import 'package:recruitment/Views/Shared/AppBar.dart';
+import 'package:recruitment/Views/Shared/jobCard.dart';
 import 'package:flutter/material.dart';
 
-class TestView extends StatefulWidget {
-  const TestView({super.key});
+class JobsPostedView extends StatefulWidget {
+  const JobsPostedView({super.key});
 
   @override
-  State<TestView> createState() => _TestViewState();
+  State<JobsPostedView> createState() => _JobsPostedViewState();
 }
 
-class _TestViewState extends State<TestView> {
+class _JobsPostedViewState extends State<JobsPostedView> {
   @override
   Widget build(BuildContext context) {
     final layoutManager = LayoutManager(context);
@@ -22,9 +23,14 @@ class _TestViewState extends State<TestView> {
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(
-            horizontal: layoutManager.mainHorizontalPadding(), vertical: 16),
+            horizontal: layoutManager.mainHorizontalPadding()),
         child: ListView(
-          children: const [],
+          children: const [
+            JobCard(isAdmin: true),
+            JobCard(isAdmin: true),
+            JobCard(isAdmin: true),
+            JobCard(isAdmin: true),
+          ],
         ),
       ),
     );

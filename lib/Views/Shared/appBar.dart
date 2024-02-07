@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 // import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:recruitment/Helper/Constants.dart';
 import 'package:recruitment/Views/messages.dart';
-import 'package:recruitment/Views/profile.dart';
+import 'package:recruitment/Views/myAccountCompany.dart';
 
 class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   final AppBar appBar;
@@ -129,7 +129,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
                     borderRadius: BorderRadius.circular(50),
                     splashColor: Colors.grey[500],
                     onTap: () {
-                      context.navigateTo(const ProfileView());
+                      context.navigateTo(const MyAccountView());
                     },
                     child: const Icon(
                       Icons.person_outline,
@@ -145,5 +145,5 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   // TODO: implement preferredSize
-  Size get preferredSize => new Size.fromHeight(appBar.preferredSize.height);
+  Size get preferredSize => Size.fromHeight(appBar.preferredSize.height);
 }

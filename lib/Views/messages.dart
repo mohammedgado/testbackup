@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:recruitment/Extensions/extensions.dart';
 import 'package:recruitment/Views/Shared/AppBar.dart';
 import 'package:recruitment/Views/Shared/messageTile.dart';
+import 'package:recruitment/Views/Userprofile.dart';
 
 class MessagesView extends StatelessWidget {
   const MessagesView({super.key});
@@ -16,13 +18,13 @@ class MessagesView extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          MessageTile(),
-          MessageTile(),
-          MessageTile(),
-          MessageTile(),
-          MessageTile(),
-          SizedBox(height: 40),
-          Text(
+          const MessageTile(),
+          const MessageTile(),
+          const MessageTile(),
+          const MessageTile(),
+          const MessageTile(),
+          const SizedBox(height: 40),
+          const Text(
             'There are no more conversations',
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -32,6 +34,12 @@ class MessagesView extends StatelessWidget {
               fontWeight: FontWeight.w400,
               height: 0.17,
             ),
+          ),
+          MaterialButton(
+            child: const Text('User Profile'),
+            onPressed: () {
+              context.navigateTo(const UserProfileView());
+            },
           )
         ],
       ),

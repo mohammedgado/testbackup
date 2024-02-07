@@ -8,7 +8,6 @@ import 'package:recruitment/Views/Shared/authTextField.dart';
 import 'package:recruitment/Views/Shared/passTextField.dart';
 import 'package:recruitment/Views/home.dart';
 import 'package:recruitment/Views/userTypeSelect.dart';
-import 'package:recruitment/views/signup.dart';
 import 'package:recruitment/Helper/Constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -115,7 +114,7 @@ class _LoginViewState extends State<LoginView> {
                 PassTextField(
                   controller: passwordController,
                   onChanged: (value) => pass = value,
-                  hintText: '*******************',
+                  hintText: '***********',
                 ),
                 const SizedBox(height: 100),
                 CustomLoadingButton(

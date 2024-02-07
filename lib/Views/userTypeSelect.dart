@@ -4,7 +4,6 @@ import 'package:recruitment/Helper/responsive.dart';
 import 'package:recruitment/Managers/LayoutManager.dart';
 import 'package:recruitment/Views/Shared/AppBar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:recruitment/Views/signup.dart';
 
 class UserTypeSelectView extends StatefulWidget {
@@ -46,6 +45,7 @@ class _UserTypeSelectViewState extends State<UserTypeSelectView> {
             ),
             const SizedBox(height: 16),
             Wrap(
+              alignment: WrapAlignment.center,
               children: [
                 InkWell(
                   onTap: () => setState(() {
