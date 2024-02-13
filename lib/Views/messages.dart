@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:recruitment/Extensions/extensions.dart';
 import 'package:recruitment/Views/Shared/AppBar.dart';
 import 'package:recruitment/Views/Shared/messageTile.dart';
-import 'package:recruitment/Views/Userprofile.dart';
+import 'package:recruitment/Views/myAccountCandidate.dart';
 
 class MessagesView extends StatelessWidget {
   const MessagesView({super.key});
@@ -38,7 +38,7 @@ class MessagesView extends StatelessWidget {
           MaterialButton(
             child: const Text('User Profile'),
             onPressed: () {
-              context.navigateTo(const UserProfileView());
+              context.navigateTo(const MyAccountCandidateView());
             },
           )
         ],

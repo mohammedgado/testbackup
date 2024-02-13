@@ -127,17 +127,18 @@ class _LoginViewState extends State<LoginView> {
                     Expanded(
                       child: SizedBox(
                         child: Center(
-                            child: Container(
-                          decoration: const ShapeDecoration(
-                            shape: RoundedRectangleBorder(
-                              side: BorderSide(
-                                width: 1,
-                                strokeAlign: BorderSide.strokeAlignCenter,
-                                color: Color(0xFFE8ECF4),
+                          child: Container(
+                            decoration: const ShapeDecoration(
+                              shape: RoundedRectangleBorder(
+                                side: BorderSide(
+                                  width: 1,
+                                  strokeAlign: BorderSide.strokeAlignCenter,
+                                  color: Color(0xFFE8ECF4),
+                                ),
                               ),
                             ),
                           ),
-                        )),
+                        ),
                       ),
                     ),
                     const Text(
@@ -190,6 +191,7 @@ class _LoginViewState extends State<LoginView> {
                         GoogleSignInAccount account =
                             await GSignIn().handleSignIn();
                         print(account);
+                        // ignore: use_build_context_synchronously
                         context.okAlert(
                             title: 'Google Sign in',
                             message:
