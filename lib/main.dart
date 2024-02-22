@@ -1,8 +1,13 @@
-import 'package:recruitment/Helper/Constants.dart';
-import 'package:recruitment/Views/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'core/constants/constant.dart';
+import 'core/constants/userData.dart';
+import 'package:dubai_recruitment/core/constants/appDesign.dart';
+
+import 'features/dashBoard/presentation/pages/dashBoard.dart';
+import 'features/job/presentation/pages/findJobHome.dart';
+
 
 void main() {
   runApp(
@@ -45,7 +50,7 @@ class _MyAppState extends State<MyApp> {
           colorScheme: ColorScheme.fromSeed(seedColor: appDesign.colorPrimary),
           useMaterial3: true,
         ),
-        home: const SplashView(),
+        home: FindJobHomeView(),
       );
     });
   }

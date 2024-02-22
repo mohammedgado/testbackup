@@ -1,0 +1,4 @@
+class Token {
+
+  static const userToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZDFmNmVlMjkyOGU2NDlkMWYwMDZiZCIsImlhdCI6MTcwODI1OTE1NCwiZXhwIjoxNzEwODUxMTU0fQ.7XMGdE-1-f1bhs5kSOE_q23XeQJUbyuQ9i7K7uPvQ_8";
+}
