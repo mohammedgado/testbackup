@@ -71,7 +71,7 @@ class JobRemoteDataSource {
 
   }
 
-  Future<int> postJob() async {
+  Future<Response> postJob() async {
     const String url = EndPoints.baseURL + EndPoints.companyJobs + EndPoints.addJob;
     final job = PostJob(
       title: "Laravel Developer",
@@ -92,7 +92,7 @@ class JobRemoteDataSource {
         ),
       );
 
-     return response.statusCode ?? 10;
+     return response;
   }
 
   Future<Response> applyJob(String jobId) async {

@@ -1,3 +1,4 @@
+import 'package:dubai_recruitment/features/job/presentation/pages/postJob.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -50,7 +51,7 @@ class _MyAppState extends State<MyApp> {
           colorScheme: ColorScheme.fromSeed(seedColor: appDesign.colorPrimary),
           useMaterial3: true,
         ),
-        home: FindJobHomeView(),
+        home: PostJobView(),
       );
     });
   }

@@ -1,4 +1,3 @@
-
 import 'package:bottom_picker/bottom_picker.dart';
 import 'package:bottom_picker/resources/arrays.dart';
 import 'package:dubai_recruitment/core/constants/appDesign.dart';
@@ -25,6 +24,9 @@ class _PostJobViewState extends State<PostJobView> {
   final RoundedLoadingButtonController applyBtnController =
       RoundedLoadingButtonController();
 
+
+
+  List<String> jobTypes = ["Remote","Hybrid","OnSite"];
   @override
   void initState() {
     super.initState();
@@ -49,8 +51,9 @@ class _PostJobViewState extends State<PostJobView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // CloseButton(),
-              editTextField(context, 'Title', textController),
-              editTextField(context, 'Job type', textController),
+              EditTextField(title: 'Title', controller: textController,),
+              EditTextField(title: 'Title', controller: textController,),
+
 
 
 
@@ -81,7 +84,25 @@ class _PostJobViewState extends State<PostJobView> {
                       borderRadius: BorderRadius.all(Radius.circular(8))),
                 ),
               ),
-              CustomLoadingButton(
+              const Text(
+                'Job type',
+                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 19),
+              ),
+            DropdownButton(
+
+              value: jobTypes[0],
+              items: jobTypes.map((String items) {
+                return DropdownMenuItem(
+                  value: items,
+                  child: Text(items),
+                );
+              }).toList(),
+              onChanged: (String? value){
+            print("change"
+
+            );
+          }),
+            CustomLoadingButton(
                 removePadding: true,
                 controller: applyBtnController,
                 // text: AppLocalizations.of(context)!.logIn,

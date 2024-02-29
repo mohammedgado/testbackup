@@ -2,6 +2,7 @@ import 'package:dubai_recruitment/core/extensions/extensions.dart';
 import 'package:dubai_recruitment/core/layoutHelpers/LayoutHelper.dart';
 import 'package:dubai_recruitment/core/widgets/exitButton.dart';
 import 'package:dubai_recruitment/core/widgets/iconTextRow.dart';
+import 'package:dubai_recruitment/core/widgets/imageTextRow.dart';
 import 'package:dubai_recruitment/core/widgets/label_value_row.dart';
 import 'package:dubai_recruitment/features/job/data/data_sources/jobRemoteDataSource.dart';
 import 'package:dubai_recruitment/features/job/data/repositories/jobsRepo.dart';
@@ -12,7 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:dubai_recruitment/core/constants/appDesign.dart';
-
 import '../../../../core/enums/jobType.dart';
 import '../../../../core/layoutHelpers/responsive.dart';
 import '../../../../core/widgets/CustomLoadingButton.dart';
@@ -20,10 +20,12 @@ import '../../data/models/job.dart';
 import 'apply.dart';
 
 class JobView extends StatelessWidget {
-  final Job job;
 
+  final Job job;
   JobView({Key? key, required this.job}) : super(key: key);
   late LayoutHelper layoutHelper;
+  final buttonController = RoundedLoadingButtonController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +45,7 @@ class JobView extends StatelessWidget {
                   horizontal: layoutHelper.mainHorizontalPadding()),
               child: Container(
 
-                decoration: BoxDecoration(
+                  decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   color: Colors.white,
                   boxShadow: [
@@ -86,30 +88,9 @@ class JobView extends StatelessWidget {
                         maxLines: 3,
                       ),
                       const SizedBox(height: 16),
-                      Row(
-                        children: [
-                          Container(
-                            height: 50,
-                            width: 50,
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(15),
-                                border: Border.all(color: Colors.grey)),
-                            child: Image.network(
-                                "https://www.linkyou.ca/wp-content/uploads/2023/10/cropped-Transparency-1-1024x281-1.png"),
-                          ),
-                          SizedBox(width: 8),
-                          Text(
-                            job.company.companyName,
-                            style: const TextStyle(
-                              color: Color(0xFF484C52),
-                              fontSize: 15,
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w400,
-                            ),
-                          )
-                        ],
-                      ),
+                      ImageTextRow(
+                          company: job.company,
+                          imgUrl: "https://www.linkyou.ca/wp-content/uploads/2023/10/cropped-Transparency-1-1024x281-1.png"),
 
                       const SizedBox(height: 16),
                       IconTextRow(
@@ -151,26 +132,23 @@ class JobView extends StatelessWidget {
                       const SizedBox(height: 16),
                       BlocBuilder<JobsBloc, JobsState>(
                         builder: (context, state) {
-                         final buttonController = RoundedLoadingButtonController();
 
-                          if (state is JobsLoadingState) {
-                            buttonController.start();
+
+                          if(state is JobsReceivedDataState) {
+                            print("ENter SUCC");
+                            buttonController.success();
                           }else
-                            if(state is JobsReceivedDataState) {
+                          if (state is JobsErrorState) {
 
-                              print("ENter SUCC");
-                              buttonController.reset();
-                          }else
-                            if (state is JobsErrorState) {
+                            //Todo: Erorr handling
+                            buttonController.reset();
+                            //return  Text(state.msg);
+                          }
 
-                              buttonController.reset();
-                              //Todo: Erorr handling
-                              return  Text(state.msg);
-                            }
-
-                            return CustomLoadingButton(
+                         return CustomLoadingButton(
                                 controller: buttonController,
                                 text: "Apply",
+
                                 onPressed: () {
                                   BlocProvider.of<JobsBloc>(context).add(ApplyJobEvent(job.id));
                                 });

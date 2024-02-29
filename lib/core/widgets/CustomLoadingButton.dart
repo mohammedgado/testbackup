@@ -31,7 +31,7 @@ class CustomLoadingButton extends StatelessWidget {
         height: 46,
         controller: controller,
         color: color ?? appDesign.colorPrimary,
-        successIcon: Icons.cloud,
+        successIcon: Icons.cloud_done,
         failedIcon: Icons.error,
         borderRadius: 10.0,
         onPressed: onPressed,

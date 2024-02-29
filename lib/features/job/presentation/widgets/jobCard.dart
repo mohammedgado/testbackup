@@ -1,6 +1,7 @@
 import 'package:dubai_recruitment/core/enums/jobType.dart';
 import 'package:dubai_recruitment/core/extensions/extensions.dart';
 import 'package:dubai_recruitment/core/widgets/iconTextRow.dart';
+import 'package:dubai_recruitment/core/widgets/imageTextRow.dart';
 import 'package:flutter/material.dart';
 import 'package:dubai_recruitment/core/constants/appDesign.dart';
 import '../../../../core/widgets/chips.dart';
@@ -107,30 +108,9 @@ class JobCard extends StatelessWidget {
                   onTap: () {
                     context.popUpPage(CompanyProfileView(company: job.company, ));
                   },
-                  child: Row(
-                   crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                     Container(height: 50,width: 50,
-                    
-                     decoration: BoxDecoration(
-                       color: Colors.white,
-                       borderRadius: BorderRadius.circular(15),
-                       border: Border.all(color: Colors.grey)
-                     ),
-
-                     child: Image.network("https://www.linkyou.ca/wp-content/uploads/2023/10/cropped-Transparency-1-1024x281-1.png"),
-                     ),
-                      SizedBox(width: 8),
-                      Text(
-                        'LinkYou.ca',
-                        style: TextStyle(
-                          color: appDesign.colorText,
-                          fontSize: 15,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ],
+                  child: ImageTextRow(
+                    company: job.company,
+                    imgUrl:"https://www.linkyou.ca/wp-content/uploads/2023/10/cropped-Transparency-1-1024x281-1.png",
                   ),
                 ),
                 const SizedBox(height: 16),
