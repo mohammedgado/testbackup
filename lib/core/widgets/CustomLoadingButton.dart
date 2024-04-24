@@ -1,9 +1,8 @@
 import 'package:dubai_recruitment/core/constants/appDesign.dart';
 import 'package:dubai_recruitment/core/extensions/extensions.dart';
+import 'package:dubai_recruitment/core/widgets/roundedLoadingButton.dart';
 import 'package:flutter/material.dart';
-import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:dubai_recruitment/core/layoutHelpers/LayoutHelper.dart';
-
 
 class CustomLoadingButton extends StatelessWidget {
   final RoundedLoadingButtonController controller;
@@ -31,7 +30,7 @@ class CustomLoadingButton extends StatelessWidget {
         height: 46,
         controller: controller,
         color: color ?? appDesign.colorPrimary,
-        successIcon: Icons.cloud_done,
+        successIcon: Icons.check,
         failedIcon: Icons.error,
         borderRadius: 10.0,
         onPressed: onPressed,

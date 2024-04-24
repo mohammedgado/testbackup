@@ -1,8 +1,8 @@
+import 'package:dubai_recruitment/features/authentication/presentation/pages/login.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/constants/userData.dart';
 import '../../../job/presentation/pages/findJobHome.dart';
-
 
 class AuthenticationService extends StatefulWidget {
   const AuthenticationService({super.key});
@@ -26,8 +26,9 @@ class _AuthenticationServiceState extends State<AuthenticationService> {
   Widget build(BuildContext context) {
     return Consumer<UserData>(
       builder: (context, userData, child) {
-        //return userData.userInfo.id == 0 ? const LoginView() : const HomeView();
-        return  FindJobHomeView();
+        return userData.isLoggedIn()
+            ? const FindJobHomeView()
+            : const LoginView();
       },
     );
   }

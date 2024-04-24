@@ -8,8 +8,9 @@ class UserData extends ChangeNotifier {
   static String language = 'en';
   static bool showNotifications = true;
   static bool firstRun = true;
+  static String token = '';
   // static int userId = 0;
-  // static int userType = 0;
+  static int userType = 1;
 
   String get userLanguage => language;
   setLanguage(value) {
@@ -24,34 +25,34 @@ class UserData extends ChangeNotifier {
   }
 
   static User _userInfo = User(
-    id: 0,
+    id: '0',
     displayName: "",
     fullName: "",
     email: "",
     password: "",
     phone: "",
     userImage: "",
-    userType: 0,
+    userType: '0',
   );
 
   User get userInfo => _userInfo;
   bool get isFirstRun => firstRun;
 
-  int getId() {
-    return _userInfo.id;
+  String getId() {
+    return _userInfo.id!;
   }
 
   loadUserData() async {
     final prefs = await SharedPreferences.getInstance();
     var emptyUser = User(
-      id: 0,
+      id: '0',
       displayName: "",
       fullName: "",
       email: "",
       password: "",
       phone: "",
       userImage: "",
-      userType: 0,
+      userType: '0',
     );
 
     if (prefs.getString('userInfo') != null) {
@@ -61,15 +62,17 @@ class UserData extends ChangeNotifier {
     }
 
     language = prefs.getString('language') ?? "en";
+    token = prefs.getString('userToken') ?? '';
     firstRun = prefs.getBool('firstRun') ?? true;
     showNotifications = prefs.getBool('showNotifications') ?? true;
     notifyListeners();
     print('Loaded user ID: ${_userInfo.id}');
   }
 
-  void saveUserData(user) async {
+  void saveUserData(user, userToken) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString('userInfo', jsonEncode(user.toJson()));
+    prefs.setString('userToken', userToken);
     if (firstRun == true) {
       updateFirstRun();
     }
@@ -81,31 +84,33 @@ class UserData extends ChangeNotifier {
   }
 
   bool isLoggedIn() {
-    bool isLoggedIn = _userInfo.id == 0 ? false : true;
+    bool isLoggedIn = token == '' ? false : true;
     return isLoggedIn;
   }
 
-  logUser(User? user) {
+  logUser(User? user, userToken) {
     print("Logged User: ${user!.toJson().toString()}");
     _userInfo = user;
-    saveUserData(user);
+    token = userToken;
+    saveUserData(user, userToken);
     notifyListeners();
   }
 
   signOut() {
+    token = '';
     print("Logged out!");
     User clearUser = User(
-      id: 0,
+      id: '0',
       displayName: "",
       fullName: "",
       email: "",
       password: "",
       phone: "",
       userImage: "",
-      userType: 0,
+      userType: '0',
     );
     _userInfo = clearUser;
-    saveUserData(clearUser);
+    saveUserData(clearUser, '');
     notifyListeners();
   }
 }

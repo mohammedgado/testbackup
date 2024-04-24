@@ -6,8 +6,6 @@ import '../features/authentication/presentation/manager/authentication.dart';
 import '../core/constants/userData.dart';
 import 'package:dubai_recruitment/core/constants/appDesign.dart';
 
-
-
 class SplashView extends StatefulWidget {
   const SplashView({Key? key}) : super(key: key);
 

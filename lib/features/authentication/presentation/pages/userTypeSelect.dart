@@ -1,11 +1,12 @@
+import 'package:dubai_recruitment/core/constants/userData.dart';
 import 'package:dubai_recruitment/core/extensions/extensions.dart';
 import 'package:dubai_recruitment/core/layoutHelpers/LayoutHelper.dart';
 import 'package:dubai_recruitment/features/authentication/presentation/pages/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:dubai_recruitment/core/constants/appDesign.dart';
+import 'package:provider/provider.dart';
 import '../../../../core/layoutHelpers/responsive.dart';
 import '../../../../core/widgets/appBar.dart';
-
 
 class UserTypeSelectView extends StatefulWidget {
   const UserTypeSelectView({super.key});
@@ -51,6 +52,7 @@ class _UserTypeSelectViewState extends State<UserTypeSelectView> {
                 InkWell(
                   onTap: () => setState(() {
                     isCandidate = true;
+                    UserData.userType = 1;
                   }),
                   child: Container(
                     height: Dimensions.widthPercentage(context, 40),
@@ -96,6 +98,7 @@ class _UserTypeSelectViewState extends State<UserTypeSelectView> {
                 InkWell(
                   onTap: () => setState(() {
                     isCandidate = false;
+                    UserData.userType = 2;
                   }),
                   child: Container(
                     height: Dimensions.widthPercentage(context, 40),

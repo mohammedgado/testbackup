@@ -1,19 +1,21 @@
 class User {
-  int id;
-  String displayName;
+  String? id;
+  String? displayName;
   String fullName;
   bool? isActive;
   String? phone;
-  int? userType;
+  String? userType;
   String email;
   String? registerationDate;
   String? lastLoginDate;
-  String password;
+  String? password;
   String? userImage;
   String? deviceToken;
+  dynamic districtId;
+  dynamic categoryId;
   User({
-    required this.id,
-    required this.displayName,
+    this.id,
+    this.displayName,
     required this.fullName,
     this.isActive,
     this.phone,
@@ -21,40 +23,46 @@ class User {
     required this.email,
     this.registerationDate,
     this.lastLoginDate,
-    required this.password,
+    this.password,
     this.userImage,
     this.deviceToken,
+    this.districtId,
+    this.categoryId,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      id: json['id'],
+      id: json['_id'],
       displayName: json['displayName'],
-      fullName: json['fullName'],
-      isActive: json['isActive'],
+      fullName: json['fullname'],
+      isActive: json['is_active'],
       phone: json['phone'],
       userType: json['userType'],
       email: json['email'],
       registerationDate: json['registerationDate'],
       lastLoginDate: json['lastLoginDate'],
       password: json['password'],
-      userImage: json['userImage'],
+      userImage: json['image'],
       deviceToken: json['deviceToken'],
+      districtId: json['districtId'],
+      categoryId: json['categoryId'],
     );
   }
 
   Map<String, dynamic> toJson() => {
-        'id': id,
+        '_id': id,
         'displayName': displayName,
-        'fullName': fullName,
-        'isActive': isActive,
+        'fullname': fullName,
+        'is_active': isActive,
         'phone': phone,
         'userType': userType,
         'email': email,
         'registerationDate': registerationDate, // convert DateTime to string
         'lastLoginDate': lastLoginDate, // convert DateTime to string
         'password': password,
-        'userImage': userImage,
+        'image': userImage,
         'deviceToken': deviceToken,
+        "districtId": districtId,
+        "categoryId": categoryId,
       };
 }

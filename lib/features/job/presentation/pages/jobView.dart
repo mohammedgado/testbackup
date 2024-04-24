@@ -4,6 +4,7 @@ import 'package:dubai_recruitment/core/widgets/exitButton.dart';
 import 'package:dubai_recruitment/core/widgets/iconTextRow.dart';
 import 'package:dubai_recruitment/core/widgets/imageTextRow.dart';
 import 'package:dubai_recruitment/core/widgets/label_value_row.dart';
+import 'package:dubai_recruitment/core/widgets/roundedLoadingButton.dart';
 import 'package:dubai_recruitment/features/job/data/data_sources/jobRemoteDataSource.dart';
 import 'package:dubai_recruitment/features/job/data/repositories/jobsRepo.dart';
 import 'package:dubai_recruitment/features/job/presentation/manager/jobsBloc.dart';
@@ -11,7 +12,6 @@ import 'package:dubai_recruitment/features/job/presentation/manager/jobsEvent.da
 import 'package:dubai_recruitment/features/job/presentation/manager/jobsState.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:dubai_recruitment/core/constants/appDesign.dart';
 import '../../../../core/enums/jobType.dart';
 import '../../../../core/layoutHelpers/responsive.dart';
@@ -20,18 +20,15 @@ import '../../data/models/job.dart';
 import 'apply.dart';
 
 class JobView extends StatelessWidget {
-
   final Job job;
   JobView({Key? key, required this.job}) : super(key: key);
   late LayoutHelper layoutHelper;
   final buttonController = RoundedLoadingButtonController();
 
-
   @override
   Widget build(BuildContext context) {
     layoutHelper = LayoutHelper(context);
     return Scaffold(
-
       body: RepositoryProvider(
         create: (context) =>
             JobsRepo(jobRemoteDataSource: JobRemoteDataSource()),
@@ -44,8 +41,7 @@ class JobView extends StatelessWidget {
                   vertical: 100,
                   horizontal: layoutHelper.mainHorizontalPadding()),
               child: Container(
-
-                  decoration: BoxDecoration(
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   color: Colors.white,
                   boxShadow: [
@@ -57,7 +53,6 @@ class JobView extends StatelessWidget {
                     ),
                   ],
                 ),
-
                 padding: EdgeInsets.all(20),
                 child: SingleChildScrollView(
                   child: Column(
@@ -71,10 +66,7 @@ class JobView extends StatelessWidget {
                         alignment: AlignmentDirectional.bottomEnd,
                         child: Text(
                           context.getTimeDifference(job.createdAt),
-                          style: TextStyle(
-                              color: Colors.grey.shade500
-                          ),
-
+                          style: TextStyle(color: Colors.grey.shade500),
                         ),
                       ),
                       Text(
@@ -90,24 +82,22 @@ class JobView extends StatelessWidget {
                       const SizedBox(height: 16),
                       ImageTextRow(
                           company: job.company,
-                          imgUrl: "https://www.linkyou.ca/wp-content/uploads/2023/10/cropped-Transparency-1-1024x281-1.png"),
-
+                          imgUrl:
+                              "https://www.linkyou.ca/wp-content/uploads/2023/10/cropped-Transparency-1-1024x281-1.png"),
                       const SizedBox(height: 16),
                       IconTextRow(
                         txt: job.category.categoryName,
-                        icon: Icons.format_list_bulleted_outlined, width: 200,),
+                        icon: Icons.format_list_bulleted_outlined,
+                        width: 200,
+                      ),
                       const SizedBox(height: 16),
-
                       IconTextRow(
                           txt: JobType.toStringValue("${job.jobType}"),
                           icon: Icons.shopping_bag),
                       const SizedBox(height: 16),
-
                       IconTextRow(
                           txt: job.company.address, icon: Icons.pin_drop),
                       const SizedBox(height: 16),
-
-
                       const SizedBox(height: 36),
                       Align(
                         alignment: Alignment.center,
@@ -132,26 +122,22 @@ class JobView extends StatelessWidget {
                       const SizedBox(height: 16),
                       BlocBuilder<JobsBloc, JobsState>(
                         builder: (context, state) {
-
-
-                          if(state is JobsReceivedDataState) {
+                          if (state is JobsReceivedDataState) {
                             print("ENter SUCC");
                             buttonController.success();
-                          }else
-                          if (state is JobsErrorState) {
-
+                          } else if (state is JobsErrorState) {
                             //Todo: Erorr handling
                             buttonController.reset();
                             //return  Text(state.msg);
                           }
 
-                         return CustomLoadingButton(
-                                controller: buttonController,
-                                text: "Apply",
-
-                                onPressed: () {
-                                  BlocProvider.of<JobsBloc>(context).add(ApplyJobEvent(job.id));
-                                });
+                          return CustomLoadingButton(
+                              controller: buttonController,
+                              text: "Apply",
+                              onPressed: () async {
+                                BlocProvider.of<JobsBloc>(context)
+                                    .add(ApplyJobEvent(job.id));
+                              });
                         },
                       )
                     ],

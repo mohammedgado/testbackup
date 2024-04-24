@@ -9,6 +9,8 @@ class AuthTextField extends StatelessWidget {
   final Function()? onEditeComplete;
   final bool obscureText;
   final TextEditingController? controller;
+  final bool hideLabel;
+  final bool removePadding;
 
   const AuthTextField(
       {Key? key,
@@ -18,23 +20,29 @@ class AuthTextField extends StatelessWidget {
       this.onChanged,
       required this.obscureText,
       this.controller,
-      this.onEditeComplete})
+      this.onEditeComplete,
+      this.hideLabel = false,
+      this.removePadding = false})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+      padding: removePadding
+          ? EdgeInsets.all(0)
+          : EdgeInsets.symmetric(horizontal: 8, vertical: 5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            labelText,
-            style: TextStyle(
-                fontSize: 17,
-                color: appDesign.colorText,
-                fontWeight: FontWeight.bold),
-          ),
+          hideLabel
+              ? SizedBox()
+              : Text(
+                  labelText,
+                  style: TextStyle(
+                      fontSize: 17,
+                      color: appDesign.colorText,
+                      fontWeight: FontWeight.bold),
+                ),
           SizedBox(height: 8),
           Container(
             height: 50,

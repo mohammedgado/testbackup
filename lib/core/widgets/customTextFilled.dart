@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import '../layoutHelpers/responsive.dart';
 
 class EditTextField extends StatefulWidget {
-   String title;
-   TextEditingController controller;
-   EditTextField({super.key,required this.title,required this.controller});
+  String title;
+  TextEditingController controller;
+  EditTextField({super.key, required this.title, required this.controller});
 
   @override
   State<EditTextField> createState() => _EditTextFieldState();
@@ -15,7 +15,6 @@ class EditTextField extends StatefulWidget {
 class _EditTextFieldState extends State<EditTextField> {
   @override
   Widget build(BuildContext context) {
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,7 +26,6 @@ class _EditTextFieldState extends State<EditTextField> {
         ),
         const SizedBox(height: 4),
         Container(
-
           height: 50,
           child: TextField(
             keyboardType: TextInputType.text,
@@ -48,19 +46,12 @@ class _EditTextFieldState extends State<EditTextField> {
                 fontWeight: FontWeight.w400,
               ),
               border: OutlineInputBorder(
-                // borderSide: BorderSide(color: Colors.white),
+                  // borderSide: BorderSide(color: Colors.white),
                   borderRadius: BorderRadius.all(Radius.circular(8))),
             ),
           ),
         ),
       ],
-    );;
+    );
   }
 }
-
-
-
-
-
-
-

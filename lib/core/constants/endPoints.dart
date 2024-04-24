@@ -1,4 +1,3 @@
-
 class EndPoints {
   static const baseURL = "https://elated-gould.38-100-170-33.plesk.page";
   static const register = "/register";
@@ -7,12 +6,17 @@ class EndPoints {
   static const forgotPassword = "/forgot-password";
   static const logout = "/logout";
   static const companyJobs = "/companyJobs";
+  static const addNew = "/addNew";
   static const getAllCompanyJobs = "/getAllCompanyJobs";
+  static const getJobsByTitle = "/getJobsByTitle";
   static const getAll = "/getAll";
   static const addJob = "/addJob";
   static const delete = "/delete/";
   static const jobApplication = "/jobApplication";
+  static const getEmployeeDetails = "/getEmployeeDetails/";
+  static const bookmarkApplication = "/BookmarkApplication";
   static const getAllOfUser = "/getAllOfUser";
+  static const getAllUsersByJobId = "/getAllUsersByJobId/";
   static const getAllOfCompany = "/getAllOfCompany";
   static const oneUserApplication = "/oneUserApplication/";
   static const oneCompanyApplication = "/oneCompanyApplication/";
@@ -37,10 +41,5 @@ class EndPoints {
   static const addResume = "/addResume";
   static const userSkill = "/userSkill";
   static const addSkill = "/addSkill";
-
-
-
-
-
-
+  static const favoriteJob = "/FavoriteJob";
 }

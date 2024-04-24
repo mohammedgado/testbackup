@@ -1,12 +1,13 @@
 // import 'package:recruitment/Views/notificationsView.dart';
+import 'package:dubai_recruitment/core/constants/userData.dart';
 import 'package:dubai_recruitment/core/extensions/extensions.dart';
+import 'package:dubai_recruitment/features/profile/presentation/pages/myAccountCandidate.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:dubai_recruitment/core/constants/appDesign.dart';
 import 'package:dubai_recruitment/core/constants/constant.dart';
-import '../../features/company/presentation/pages/myAccountCompany.dart';
+import '../../features/profile/presentation/pages/myProfile.dart';
 import '../../features/messaging/presentation/pages/messages.dart';
-
 
 class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   final AppBar appBar;
@@ -80,27 +81,27 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: hideActions != null && hideActions == true
           ? null
           : [
-              Container(
-          height: 45,
-          width: 45,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50),
-          ),
-          child: Material(
-            color: Colors.transparent,
-            child: InkWell(
-              borderRadius: BorderRadius.circular(50),
-              splashColor: Colors.grey[500],
-              onTap: () {
-                context.navigateTo(const MyAccountView());
-              },
-              child: const Icon(
-                Icons.bookmark,
-                color: appDesign.colorPrimary,
-              ),
-            ),
-          ),
-        ),
+              // Container(
+              //   height: 45,
+              //   width: 45,
+              //   decoration: BoxDecoration(
+              //     borderRadius: BorderRadius.circular(50),
+              //   ),
+              //   child: Material(
+              //     color: Colors.transparent,
+              //     child: InkWell(
+              //       borderRadius: BorderRadius.circular(50),
+              //       splashColor: Colors.grey[500],
+              //       onTap: () {
+              //         context.navigateTo(const MyAccountView());
+              //       },
+              //       child: const Icon(
+              //         Icons.bookmark,
+              //         color: appDesign.colorPrimary,
+              //       ),
+              //     ),
+              //   ),
+              // ),
               Container(
                 height: 45,
                 width: 45,
@@ -161,7 +162,6 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ),
                 ),
               ),
-
               const SizedBox(width: 10),
             ],
     );

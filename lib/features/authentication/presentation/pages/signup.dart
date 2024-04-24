@@ -1,10 +1,20 @@
+// ignore_for_file: use_build_context_synchronously
 
+import 'dart:convert';
+
+import 'package:dubai_recruitment/core/constants/userData.dart';
 import 'package:dubai_recruitment/core/extensions/extensions.dart';
 import 'package:dubai_recruitment/core/handlers/ValidatorHandler.dart';
 import 'package:dubai_recruitment/core/layoutHelpers/LayoutHelper.dart';
+import 'package:dubai_recruitment/core/widgets/phoneTextField.dart';
+import 'package:dubai_recruitment/core/widgets/roundedLoadingButton.dart';
+import 'package:dubai_recruitment/features/authentication/data/data_sources/authDataSource.dart';
+import 'package:dubai_recruitment/features/authentication/data/models/user.dart';
+import 'package:dubai_recruitment/features/authentication/data/repositories/authRepo.dart';
+import 'package:dubai_recruitment/features/authentication/presentation/pages/verify.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:rounded_loading_button/rounded_loading_button.dart';
+import 'package:provider/provider.dart';
 import 'package:dubai_recruitment/core/constants/appDesign.dart';
 
 import '../../../../core/widgets/CustomLoadingButton.dart';
@@ -34,7 +44,7 @@ class _SignupViewState extends State<SignupView> {
   var email;
   var number;
 
-  void signUpValidation(RoundedLoadingButtonController btnController) {
+  void signUpValidation(RoundedLoadingButtonController btnController) async {
     String? nameError = _validator.validateName(name);
     String? passwordError = _validator.validatePassword(password);
     String? confirmPassError =
@@ -59,6 +69,34 @@ class _SignupViewState extends State<SignupView> {
       );
       btnController.reset();
     } else {
+      var userData;
+      var apiOTP;
+      try {
+        var res = await AuthRepo(
+          authDataSource: AuthDataSource(),
+        ).register(name, email, password, UserData.userType, number);
+        // Map<String, dynamic> userData = res.data['user'];
+        // print('user is: $userData');
+        apiOTP = res.data['Otp'];
+        print(apiOTP);
+
+        // if (true) {
+        // Provider.of<UserData>(context, listen: false).logUser(user, token);
+        btnController.reset();
+        context.navigateTo(
+          VerifyView(
+            apiOTP: apiOTP,
+            userData: res.data['user'],
+          ),
+        );
+      } catch (e) {
+        print(e);
+      }
+      // } else {
+      // context.okAlert(title: 'Failed!', message: 'User already exists!');
+      // btnController.reset();
+      // }
+
       // Validation passed, proceed with sign-up
       // print("now we can add to data base");
       // _authController
@@ -129,7 +167,7 @@ class _SignupViewState extends State<SignupView> {
               AuthTextField(
                 controller: _nameController,
                 // labelText: AppLocalizations.of(context)!.userName,
-                labelText: 'First name',
+                labelText: 'Display name',
                 hintText: 'Please enter your first name',
                 obscureText: false,
                 onChanged: (text) {
@@ -139,16 +177,16 @@ class _SignupViewState extends State<SignupView> {
                   });
                 },
               ),
-              AuthTextField(
-                controller: _nameInAppController,
-                // labelText: AppLocalizations.of(context)!.displayName,
-                labelText: 'Last name',
-                hintText: 'Please enter your last name',
-                obscureText: false,
-                onChanged: (text) {
-                  nameInApp = text;
-                },
-              ),
+              // AuthTextField(
+              //   controller: _nameInAppController,
+              //   // labelText: AppLocalizations.of(context)!.displayName,
+              //   labelText: 'Last name',
+              //   hintText: 'Please enter your last name',
+              //   obscureText: false,
+              //   onChanged: (text) {
+              //     nameInApp = text;
+              //   },
+              // ),
               AuthTextField(
                 controller: _emailController,
                 labelText: AppLocalizations.of(context)!.email,
@@ -158,20 +196,25 @@ class _SignupViewState extends State<SignupView> {
                   email = text;
                 },
               ),
+              PhoneTextField(
+                labelText: AppLocalizations.of(context)!.phone,
+                onChanged: (text) {
+                  number = text;
+                },
+              ),
               PassTextField(
                 hintText: '*******************',
                 onChanged: (text) {
                   password = text;
                 },
               ),
-              // PassTextField(
-              //   labelText: AppLocalizations.of(context)!.confirmPassword,
-              //   onChanged: (text) {
-              //     confirmPass = text;
-              //   },
-              //   onEditeComplete: () {},
-              // ),
-
+              PassTextField(
+                labelText: AppLocalizations.of(context)!.confirmPassword,
+                onChanged: (text) {
+                  confirmPass = text;
+                },
+                onEditeComplete: () {},
+              ),
               CustomLoadingButton(
                 // text: AppLocalizations.of(context)!.createNewAccount,
                 text: 'Register',
@@ -235,7 +278,9 @@ class _SignupViewState extends State<SignupView> {
                       color: Colors.white,
                       shape: RoundedRectangleBorder(
                         side: const BorderSide(
-                            width: 1, color: Color(0xFFE8ECF4)),
+                          width: 1,
+                          color: Color(0xFFE8ECF4),
+                        ),
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
@@ -248,7 +293,9 @@ class _SignupViewState extends State<SignupView> {
                       color: Colors.white,
                       shape: RoundedRectangleBorder(
                         side: const BorderSide(
-                            width: 1, color: Color(0xFFE8ECF4)),
+                          width: 1,
+                          color: Color(0xFFE8ECF4),
+                        ),
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
@@ -261,7 +308,9 @@ class _SignupViewState extends State<SignupView> {
                       color: Colors.white,
                       shape: RoundedRectangleBorder(
                         side: const BorderSide(
-                            width: 1, color: Color(0xFFE8ECF4)),
+                          width: 1,
+                          color: Color(0xFFE8ECF4),
+                        ),
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),

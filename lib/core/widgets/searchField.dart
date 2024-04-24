@@ -12,6 +12,7 @@ class SearchInput extends StatefulWidget {
     this.isBlue = false,
     this.isLocation = false,
     this.customIcon,
+    this.onSubmitted,
   });
   final TextEditingController? controller;
   final String? text;
@@ -20,16 +21,31 @@ class SearchInput extends StatefulWidget {
   final FocusNode? focusNode;
   final bool isBlue;
   final IconData? customIcon;
+  final Function(String)? onSubmitted;
   @override
   State<SearchInput> createState() => _SearchInputState();
 }
 
 class _SearchInputState extends State<SearchInput> {
   bool _hasText = false;
+  late TextEditingController searchController;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    searchController = widget.controller ?? TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    widget.controller == null ? searchController.dispose() : null;
+  }
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController searchController =
-        widget.controller ?? TextEditingController();
     widget.text != null ? searchController.text = widget.text! : null;
     return Container(
       decoration: BoxDecoration(
@@ -51,9 +67,7 @@ class _SearchInputState extends State<SearchInput> {
         controller: searchController,
         // style: TextStyle(fontSize: 14),
         textInputAction: TextInputAction.search,
-        onSubmitted: (search) {
-         // context.navigateTo(const SearchResultView());
-        },
+        onSubmitted: widget.onSubmitted,
         decoration: InputDecoration(
           hintText:
               widget.isLocation ? 'Enter location' : 'Looking for a job ?',

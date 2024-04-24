@@ -45,6 +45,16 @@ class ImagePickerManager {
     }
   }
 
+  Future<File?> pickOneImageFile() async {
+    final ImagePicker picker = ImagePicker();
+    XFile? imageFile = await picker.pickImage(source: ImageSource.gallery);
+    if (imageFile != null) {
+      return File(imageFile.path);
+    } else {
+      return null;
+    }
+  }
+
   // File? _selectedImage;
   // List<Asset> _selectedImages = [];
 

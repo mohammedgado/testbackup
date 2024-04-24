@@ -1,5 +1,8 @@
 import 'package:dubai_recruitment/core/constants/appDesign.dart';
 import 'package:dubai_recruitment/core/extensions/extensions.dart';
+import 'package:dubai_recruitment/features/company/presentation/pages/bookmarkedApplicants.dart';
+import 'package:dubai_recruitment/features/company/presentation/pages/myCompanies.dart';
+import 'package:dubai_recruitment/features/job/presentation/pages/jobApplicants.dart';
 import 'package:dubai_recruitment/features/job/presentation/pages/postJob.dart';
 import 'package:flutter/material.dart';
 
@@ -21,48 +24,50 @@ class _DashboardViewState extends State<DashboardView> {
       appBar: BaseAppBar(
         appBar: AppBar(),
         widgetContext: context,
-        showLogo: true,
-        showBackButton: false,
+        showLogo: false,
+        showBackButton: true,
+        hideActions: true,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-
+          const Text(
+            'Recruiter Dashboard',
+            style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.w500,
+              letterSpacing: 1.5,
+            ),
+          ),
+          const SizedBox(height: 15),
           dashboardItem(
-              title: "Create new Job",
+              title: "Post a new Job",
               color: const Color(0xFF86C157),
               icon: Icons.create_new_folder_rounded,
-              number: "", onTap: () {
-                //context.navigateTo(PostJobView());
-
-            Navigator.push<void>(
-              context,
-              MaterialPageRoute(
-                builder: (context) => PostJobView(),
-                fullscreenDialog: true,
-              ),
-            );
-
-
-          }),
-
+              number: "",
+              onTap: () {
+                context.navigateTo(
+                  const PostJobView(),
+                );
+              }),
           dashboardItem(
-              title: "Companies",
+              title: "My Companies",
               color: const Color(0xFF008DC9),
-              icon: Icons.corporate_fare ,
-              number: "", onTap: () {
-
-          }),
+              icon: Icons.corporate_fare,
+              number: "",
+              onTap: () {
+                context.navigateTo(
+                  const MyCompanies(),
+                );
+              }),
           dashboardItem(
-              title: "My Jobs",
-              color: const Color(0xFF008DC9),
-              icon: Icons.list_alt,
-              number: "", onTap: () {
-
-          })
-
-
-
+              title: "Saved Applicants",
+              color: Colors.indigo.shade400,
+              icon: Icons.bookmark,
+              number: "",
+              onTap: () {
+                context.navigateTo(const BookmarkedApplicantsView());
+              })
         ],
       ),
     );

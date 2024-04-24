@@ -3,7 +3,6 @@ import 'package:json_annotation/json_annotation.dart';
 part 'company.g.dart';
 
 @JsonSerializable()
-
 class Company {
   @JsonKey(name: '_id')
   String id;
@@ -11,10 +10,10 @@ class Company {
   @JsonKey(name: 'userId')
   String? user;
   String image;
-  String districtId;
+  dynamic districtId;
   String phone;
   String address;
-  int categoryId;
+  dynamic categoryId;
   String createdAt;
   String updatedAt;
   @JsonKey(name: '__v')
@@ -37,5 +36,4 @@ class Company {
       _$CompanyFromJson(json);
 
   Map<String, dynamic> toJson() => _$CompanyToJson(this);
-
 }

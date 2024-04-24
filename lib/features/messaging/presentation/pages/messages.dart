@@ -1,3 +1,4 @@
+import 'package:dubai_recruitment/core/constants/userData.dart';
 import 'package:dubai_recruitment/core/extensions/extensions.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,7 @@ class MessagesView extends StatelessWidget {
         widgetContext: context,
         showBackButton: true,
         showLogo: false,
+        hideActions: true,
       ),
       body: ListView(
         children: [
@@ -37,9 +39,9 @@ class MessagesView extends StatelessWidget {
             ),
           ),
           MaterialButton(
-            child: const Text('User Profile'),
+            child: const Text('Print Token'),
             onPressed: () {
-              context.navigateTo(const MyAccountCandidateView());
+              print(UserData.token);
             },
           )
         ],

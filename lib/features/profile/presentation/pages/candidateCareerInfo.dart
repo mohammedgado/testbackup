@@ -1,11 +1,14 @@
+import 'dart:convert';
+
+import 'package:dubai_recruitment/core/constants/userData.dart';
 import 'package:dubai_recruitment/core/extensions/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:dubai_recruitment/core/constants/appDesign.dart';
+import 'package:provider/provider.dart';
 import '../../../../core/enums/experienceTypeEnum.dart';
 import '../../../../core/widgets/appBar.dart';
 import '../../../../core/widgets/appListTile.dart';
 import 'Experience.dart';
-
 
 class CandidateCareerView extends StatelessWidget {
   const CandidateCareerView({super.key});
@@ -18,6 +21,7 @@ class CandidateCareerView extends StatelessWidget {
         widgetContext: context,
         showBackButton: true,
         showLogo: false,
+        hideActions: true,
       ),
       body: ListView(
         children: [
@@ -27,18 +31,23 @@ class CandidateCareerView extends StatelessWidget {
               height: 100,
               width: 100,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50), color: Colors.grey),
+                  borderRadius: BorderRadius.circular(50),
+                  color: Colors.white,
+                  boxShadow: [BoxShadow(blurRadius: 2, color: Colors.grey)]),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(50),
-                child: Image.asset('images/profile.jpg'),
+                child: Image.memory(
+                  base64Decode(
+                      UserData().userInfo.userImage!.split('base64,')[1]),
+                ),
               ),
             ),
           ),
           const SizedBox(height: 24),
-          const Text(
-            'LinkYou User',
+          Text(
+            Provider.of<UserData>(context, listen: false).userInfo.fullName,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 22,
                 fontFamily: 'Inter',
@@ -46,22 +55,24 @@ class CandidateCareerView extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           appListTile('Work experience', () {
-            context.navigateTo(ExperienceView(experienceType: ExperienceType.work));
-
+            context.navigateTo(
+                const ExperienceView(experienceType: ExperienceType.work));
           }),
           appListTile('Education', () {
-            context.navigateTo(ExperienceView(experienceType: ExperienceType.education));
-
+            context.navigateTo(
+                const ExperienceView(experienceType: ExperienceType.education));
           }),
-
           appListTile('Courses', () {
-            context.navigateTo(ExperienceView(experienceType: ExperienceType.course));
+            context.navigateTo(
+                const ExperienceView(experienceType: ExperienceType.course));
           }),
           appListTile('Skills', () {
-            context.navigateTo(ExperienceView(experienceType: ExperienceType.course));
+            context.navigateTo(
+                const ExperienceView(experienceType: ExperienceType.skill));
           }),
           appListTile('CV', () {
-            context.navigateTo(ExperienceView(experienceType: ExperienceType.course));
+            context.navigateTo(
+                const ExperienceView(experienceType: ExperienceType.resume));
           }),
           const SizedBox(height: 24),
         ],
