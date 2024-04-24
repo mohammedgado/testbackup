@@ -102,45 +102,48 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
               //     ),
               //   ),
               // ),
-              Container(
-                height: 45,
-                width: 45,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                child: Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(50),
-                    splashColor: Colors.grey[500],
-                    onTap: () {
-                      context.navigateTo(const MessagesView());
-                    },
-                    child: Stack(
-                      children: [
-                        const Center(
-                          child: Icon(
-                            Icons.email_outlined,
-                            color: appDesign.colorPrimary,
-                          ),
-                        ),
-                        Positioned(
-                          top: 12,
-                          left: 10,
-                          child: Container(
-                            width: 7,
-                            height: 7,
-                            decoration: const ShapeDecoration(
-                              color: Color(0xFFF14336),
-                              shape: OvalBorder(),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+
+              // ---------------MESSAGES------------
+
+              // Container(
+              //   height: 45,
+              //   width: 45,
+              //   decoration: BoxDecoration(
+              //     borderRadius: BorderRadius.circular(50),
+              //   ),
+              //   child: Material(
+              //     color: Colors.transparent,
+              //     child: InkWell(
+              //       borderRadius: BorderRadius.circular(50),
+              //       splashColor: Colors.grey[500],
+              //       onTap: () {
+              //         context.navigateTo(const MessagesView());
+              //       },
+              //       child: Stack(
+              //         children: [
+              //           const Center(
+              //             child: Icon(
+              //               Icons.email_outlined,
+              //               color: appDesign.colorPrimary,
+              //             ),
+              //           ),
+              //           Positioned(
+              //             top: 12,
+              //             left: 10,
+              //             child: Container(
+              //               width: 7,
+              //               height: 7,
+              //               decoration: const ShapeDecoration(
+              //                 color: Color(0xFFF14336),
+              //                 shape: OvalBorder(),
+              //               ),
+              //             ),
+              //           )
+              //         ],
+              //       ),
+              //     ),
+              //   ),
+              // ),
               Container(
                 height: 45,
                 width: 45,

@@ -57,30 +57,22 @@ class MyAccountView extends StatelessWidget {
                 color: appDesign.colorPrimary),
           ),
           const SizedBox(height: 24),
-          // UserData.userType == 1
-          //     ?
-          appListTile('Recruiter Dashboard', () {
-            context.navigateTo(const DashboardView());
-          }),
-          appListTile('Bookmarked Jobs', () {
-            context.navigateTo(const BookmarkedJobsView());
-          }),
-          // : SizedBox(),
+          UserData.userType == 2
+              ? appListTile('Recruiter Dashboard', () {
+                  context.navigateTo(const DashboardView());
+                })
+              : SizedBox(),
+          UserData.userType == 1
+              ? appListTile('Bookmarked Jobs', () {
+                  context.navigateTo(const BookmarkedJobsView());
+                })
+              : SizedBox(),
           appListTile('Profile management', () {
             context.navigateTo(const CandidatePersonalView());
           }),
           appListTile('Career Info', () {
             context.navigateTo(const CandidateCareerView());
           }),
-          // appListTile('Jobs posted', () {
-          //   context.navigateTo(const JobsPostedView());
-          // }),
-          // appListTile('Post a new job', () {
-          //   context.navigateTo(const PostJobView());
-          // }),
-          // appListTile('Saved applicants', () {
-          //   context.navigateTo(const JobApplicantsView());
-          // }),
           const ListTile(
             title: Text(
               'Delete account',
