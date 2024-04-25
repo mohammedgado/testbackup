@@ -14,7 +14,8 @@ import '../../../../core/widgets/customTextFilled.dart';
 
 class AddCompanyView extends StatefulWidget {
   final Company? companyDetails;
-  const AddCompanyView({super.key, this.companyDetails});
+  final Function refresh;
+  const AddCompanyView({super.key, this.companyDetails, required this.refresh});
 
   @override
   State<AddCompanyView> createState() => _AddCompanyViewState();
@@ -105,8 +106,11 @@ class _AddCompanyViewState extends State<AddCompanyView> {
         image,
       );
       print(res);
+      if (res.data['status'] == 'Success') {
+        applyBtnController.success();
+        widget.refresh();
+      }
     }
-    applyBtnController.reset();
   }
 
   @override

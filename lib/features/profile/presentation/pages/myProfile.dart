@@ -57,12 +57,12 @@ class MyAccountView extends StatelessWidget {
                 color: appDesign.colorPrimary),
           ),
           const SizedBox(height: 24),
-          UserData.userType == 2
+          UserData().userInfo.userType == '2'
               ? appListTile('Recruiter Dashboard', () {
                   context.navigateTo(const DashboardView());
                 })
               : SizedBox(),
-          UserData.userType == 1
+          UserData().userInfo.userType == '1'
               ? appListTile('Bookmarked Jobs', () {
                   context.navigateTo(const BookmarkedJobsView());
                 })

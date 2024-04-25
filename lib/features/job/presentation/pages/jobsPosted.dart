@@ -66,8 +66,10 @@ class _JobsPostedViewState extends State<JobsPostedView> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      context.navigateTo(
-                          AddCompanyView(companyDetails: widget.company));
+                      context.navigateTo(AddCompanyView(
+                        companyDetails: widget.company,
+                        refresh: getjobsPosted,
+                      ));
                     },
                     child: const Text(
                       'Update Company Details',

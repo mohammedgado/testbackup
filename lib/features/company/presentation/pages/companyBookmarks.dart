@@ -4,7 +4,6 @@ import 'package:dubai_recruitment/features/authentication/data/models/user.dart'
 import 'package:dubai_recruitment/features/company/data/data_sources/companyDataSources.dart';
 import 'package:dubai_recruitment/features/company/data/models/company.dart';
 import 'package:dubai_recruitment/features/job/data/models/applicant.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CompanyBookmarksView extends StatefulWidget {
@@ -20,8 +19,13 @@ class _CompanyBookmarksViewState extends State<CompanyBookmarksView> {
   bool isLoading = true;
 
   getBookmarks() async {
-    var res = await CompanyDataSource().getCompanyBookmarks(widget.company.id);
-    bookmarks = res.data;
+    try {
+      var res =
+          await CompanyDataSource().getCompanyBookmarks(widget.company.id);
+      bookmarks = res.data;
+    } catch (e) {
+      print(e);
+    }
     setState(() {
       isLoading = false;
     });

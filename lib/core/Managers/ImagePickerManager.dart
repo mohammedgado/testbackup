@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 // import 'package:multi_image_picker/multi_image_picker.dart';
+import 'package:dubai_recruitment/core/Managers/CompressImage.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImagePickerManager {
@@ -11,7 +12,8 @@ class ImagePickerManager {
     List<XFile> images = await picker.pickMultiImage();
     if (images.isNotEmpty) {
       for (var element in images) {
-        var imagFile = File(element.path).readAsBytesSync();
+        var compressedImage = await compressImage(element);
+        var imagFile = File(compressedImage.path).readAsBytesSync();
         String base64Image = base64Encode(imagFile);
         imageFiles.add(base64Image);
       }
@@ -25,7 +27,8 @@ class ImagePickerManager {
     final ImagePicker picker = ImagePicker();
     XFile? imageFile = await picker.pickImage(source: ImageSource.gallery);
     if (imageFile != null) {
-      Uint8List img = File(imageFile.path).readAsBytesSync();
+      var compressedImage = await compressImage(imageFile);
+      Uint8List img = File(compressedImage.path).readAsBytesSync();
       String base64Image = base64Encode(img);
       return base64Image;
     } else {

@@ -17,7 +17,11 @@ class _BookmarkedJobsViewState extends State<BookmarkedJobsView> {
   List<Job> jobs = [];
   bool isLoading = true;
   getBookmarkedJobs() async {
-    jobs = await JobRemoteDataSource().getFavouriteJobs();
+    try {
+      jobs = await JobRemoteDataSource().getFavouriteJobs();
+    } catch (e) {
+      print(e);
+    }
     setState(() {
       isLoading = false;
     });

@@ -67,7 +67,9 @@ class _MyCompaniesState extends State<MyCompanies> {
                     child: ElevatedButton(
                       onPressed: () {
                         context.navigateTo(
-                          const AddCompanyView(),
+                          AddCompanyView(
+                            refresh: getCompanies,
+                          ),
                         );
                       },
                       child: const Text(
